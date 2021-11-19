@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лаб 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+</head>
+
+
+
+<body>
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 5
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+        <div class="container pt-5">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                aria-controls="collapseOne">
+                                <p>Дана строка 'aa aba abba abbba abbbba abbbbba'. Напишите
+                                    регулярку, которая найдет строки abba, abbba, abbbba и только их</p>
+                            </button>
+                        </h5>
+                    </div>
+        
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                'aa aba abba abbba abbbba abbbbba'.replace(/ab{2,4}a/g, '!');
+                            </div>
+                            <div class="mb-3">
+                                <button onclick="calculate()" type="button" class="btn btn-dark">Calculate
+                                </button>
+                            </div>
+                            <div>
+                                <p id="result5"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-danger fixed-bottom row-fluid">
+        <h3 class=".text-dark">Архутик Артем</h3>
+        <h4 class=".text-dark">КФ-4</h4>
+        <p class=".text-dark">Вариант 1</p>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        const calculate = () => {
+            const result5 = document.querySelector('#result5')
+            result5.innerHTML = 'aa aba abba abbba abbbba abbbbba'.replace(/ab{2,4}a/g, '!');
+
+        }
+    </script>
+
+
+</body>
+
+</html>

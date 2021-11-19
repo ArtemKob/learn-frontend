@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task7</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #modalwin {
+            position: fixed;
+            overflow: auto;
+            z-index: 9999999999;
+            background-color: #fff;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, .2);
+            outline: 0;
+            padding: 25px;
+            display: none;
+            border-radius: 6px;
+            background-clip: padding-box;
+            -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            transition: opacity .25s ease-out .2s;
+        }
+
+        #exit {
+            margin-top: -4px;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: .2;
+            -webkit-appearance: none;
+        }
+
+        #exit:hover {
+            opacity: .5;
+        }
+
+        #exit:after {
+            content: '×';
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <header class="bg-danger mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-warning text-center">Веб программирование</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class=".text-danger text-center">Лабораторная работа 4
+    
+    
+                </p>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <section class="mb-5">
+        <p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p><p>
+            text text
+        </p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>text text</p>
+        <p>
+           
+        <div id="modalwin" style="display: block; left: 368px; top: 369px;">
+            <div id="exit"></div>
+            Привет!
+        </div>
+    </section>
+
+
+    <script>
+        let modalwin = document.getElementById('modalwin');
+        let exit = document.getElementById('exit');
+        let created = false;
+        let N = 1000 //При какой прокрутки показывать попап
+        window.addEventListener('scroll', show);
+        exit.addEventListener('click', hide);
+
+        function show() {
+            if (pageYOffset > N - 100 && pageYOffset < N + 100 && !created) {
+                modalwin.style.display = 'block';
+                modalPosition();
+                created = true;
+            }
+        }
+
+        function hide() {
+            modalwin.style.display = 'none';
+        }
+
+        window.addEventListener('resize', modalPosition);
+
+        function modalPosition() {
+            if (modalwin.style.display !== 'none') {
+                let b = document.body;
+                modalwin.style.left = (b.offsetWidth - modalwin.offsetWidth) / 2 + 'px';
+                modalwin.style.top = (b.offsetHeight - modalwin.offsetHeight) / 2 + 'px';
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

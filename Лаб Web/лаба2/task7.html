@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 7</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+</head>
+
+
+
+<body onload="go3(); go5()">
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 2</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="wrapper">
+                        <p id="test">0</p>
+                        <input type="submit" class="btn-danger" value="Click!" onclick="go()">
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="wrapper2">
+                        <p id="test2">0</p>
+                        <input type="submit" value="Start!" class="btn-danger" onclick="go2()" id="go2">
+                        <input type="submit" value="Stop!" onclick="stop2()" id="stop2" disabled="">
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="wrapper">
+                        <p id="clock">10:12:24</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="wrapper">
+                        <p id="test4">100</p>
+                        <p id="stop4"></p>
+                        <input type="submit" value="Запустить таймер!" onclick="go4()" id="go4">
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="wrapper">
+                        <p id="hours">Часы: 13</p>
+                        <p id="minutes">Минуты: 47</p>
+                        <p id="seconds">Секунды: 36</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-danger fixed-bottom row-fluid">
+        <h3 class=".text-dark">Архутик Артем</h3>
+        <h4 class=".text-dark">КФ-4</h4>
+        <p class=".text-dark">Вариант 1</p>
+    </footer>
+
+    <script>
+        function go() {
+            window.setInterval(timer, 1000);
+        }
+        function timer() {
+            var test = document.getElementById("test");
+            test.innerHTML = parseInt(test.innerHTML) + 1;
+        }
+        function go2() {
+            window.timerId = window.setInterval(timer2, 500);
+            document.getElementById("go2").disabled = true;
+            document.getElementById("stop2").disabled = false;
+        }
+        //Останавливает таймер
+        function stop2() {
+            window.clearInterval(window.timerId);
+            document.getElementById("go2").disabled = false;
+            document.getElementById("stop2").disabled = true;
+        }
+        function timer2() {
+            var test = document.getElementById("test2");
+            test.innerHTML = parseInt(test.innerHTML) + 1;
+        }
+
+        //   3
+
+        function go3() {
+            window.timerId = window.setInterval(timer3, 500);
+        }
+        function timer3() {
+            var clock = document.getElementById("clock");
+            var date = new Date();
+            clock.innerHTML =
+                addZero(date.getHours()) +
+                ":" +
+                addZero(date.getMinutes()) +
+                ":" +
+                addZero(date.getSeconds());
+        }
+        function addZero(num) {
+            if (num <= 9) return "0" + num;
+            else return num;
+        }
+
+        //   4
+
+        function go4() {
+            window.timerId = window.setInterval(timer4, 300);
+            document.getElementById("go4").disabled = true;
+        }
+        //Останавливает таймер
+        function stop4() {
+            window.clearInterval(window.timerId);
+        }
+        function timer4() {
+            var test = document.getElementById("test4");
+            var number = parseInt(test.innerHTML) - 1;
+            test.innerHTML = number;
+            if (number == 0) {
+                stop4();
+                var timetStop = document.getElementById("stop4");
+                timetStop.innerHTML = "Обратный отсчет завершен.";
+            }
+        }
+
+        //   5
+
+        function go5() {
+            window.timerId = window.setInterval(timer5, 1000);
+        }
+        function timer5() {
+            var seconds = document.getElementById("seconds");
+            var minutes = document.getElementById("minutes");
+            var hours = document.getElementById("hours");
+            var now = new Date();
+            var midnight = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate() + 1,
+                0,
+                0,
+                0
+            );
+            var diff = Math.floor((midnight - now) / 1000); //разница в милисекундах, перевели в секунды
+            var hoursRemain = Math.floor(diff / (60 * 60));
+            var minutesRemain = Math.floor((diff - hoursRemain * 60 * 60) / 60);
+            var secondsRemain = Math.floor(diff % 60);
+            hours.innerHTML = "Часы: " + hoursRemain;
+            minutes.innerHTML = "Минуты: " + addZero(minutesRemain);
+            seconds.innerHTML = "Секунды: " + addZero(secondsRemain);
+        }
+        function addZero(num) {
+            if (num <= 9) return "0" + num;
+            else return num;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

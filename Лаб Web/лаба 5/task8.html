@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лаб 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+    <style>
+        #calendar {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .controls {
+            text-align: center;
+        }
+
+        .day {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            margin-left: 2px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        .day:first-child {
+            margin-left: 0px;
+        }
+
+        .day.today {
+            background: #000;
+            color: #fff;
+        }
+
+        #date {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 4
+    
+    
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="controls">
+        <input type="button" id="prev" value="Предыдущий месяй">
+        <input type="button" id="next" value="Следующий месяц">
+        <div id="date">2021 Апрель</div>
+    </div>
+    <div id="calendar">
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day today">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+        <div class="day">26</div>
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+            <footer class="bg-danger fixed-bottom row-fluid">
+                <h3 class=".text-dark">Архутик Артем</h3>
+                <h4 class=".text-dark">КФ-4</h4>
+                <p class=".text-dark">Вариант 1</p>
+            </footer>
+    </div>
+    <script>
+        var calendar = document.getElementById('calendar');
+        var dateEl = document.getElementById('date');
+        var prevEl = document.getElementById('prev');
+        var nextEl = document.getElementById('next');
+        var deferentMonth = 0;
+        var oneHour = 1000 * 60 * 60;
+        var oneDay = oneHour * 24;
+        var MONTHS = [
+            'Январь', 'Февраль', 'Март', 'Апрель',
+            'Май', 'Июнь', 'Июль', 'Август',
+            'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+        ];
+        create();
+        prevEl.addEventListener('click', prev);
+        nextEl.addEventListener('click', next);
+        function prev() {
+            deferentMonth--;
+            create();
+        }
+        function next() {
+            deferentMonth++;
+            create();
+        }
+        function create() {
+            var d = new Date();
+            d.setMonth(d.getMonth() + deferentMonth);
+            var year = d.getFullYear();
+            var month = d.getMonth();
+            var dayCount = (new Date(year, month + 1, 0)).getDate();
+            var today = null;
+            if (deferentMonth === 0) {
+                var today = d.getDate();
+            }
+            printDate(d);
+            generate(dayCount, today);
+        }
+        function generate(count, today) {
+            var html = '';
+            for (var i = 1; i <= count; i++) {
+                var cl = 'day';
+                if (i === today) {
+                    cl += ' today';
+                }
+                html += '<div class="' + cl + '">' + i + '</div>';
+            }
+            calendar.innerHTML = html;
+        }
+        function printDate(d) {
+            dateEl.innerHTML = d.getFullYear() + ' '
+                + MONTHS[d.getMonth()];
+        }
+    </script>
+
+</body>
+
+</html>

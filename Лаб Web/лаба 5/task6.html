@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task6</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        #timer {
+            min-height: 50px;
+            text-align: center;
+        }
+
+        #game_table {
+            border: 1px solid #000;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        #start {
+            margin: 0 auto;
+            display: block;
+        }
+
+        #restart {
+            display: none;
+            margin: 20px auto;
+        }
+
+        .td {
+            width: 50px;
+            height: 50px;
+            line-height: 30px;
+            font-weight: bold;
+            border: 1px solid #000;
+            text-align: center;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .td.select {
+            background: black;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-white text-center">Лабораторная работа 5</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+        <div id="game">
+            <input type="button" id="start" value="Начать" style="display: none;">
+            <div id="timer">Вы проиграли</div>
+            <table id="game_table">
+                <tbody>
+                    <tr>
+                        <td class="td" style="font-size:34px;color:rgb(128,83,15)">9</td>
+                        <td class="td" style="font-size:23px;color:rgb(42,172,112)">8</td>
+                        <td class="td" style="font-size:21px;color:rgb(231,230,153)">5</td>
+                        <td class="td" style="font-size:38px;color:rgb(226,101,192)">11</td>
+                        <td class="td" style="font-size:32px;color:rgb(253,232,27)">21</td>
+                    </tr>
+                    <tr>
+                        <td class="td" style="font-size:37px;color:rgb(52,146,156)">18</td>
+                        <td class="td" style="font-size:19px;color:rgb(64,0,34)">12</td>
+                        <td class="td" style="font-size:37px;color:rgb(125,47,156)">20</td>
+                        <td class="td" style="font-size:23px;color:rgb(106,94,49)">19</td>
+                        <td class="td" style="font-size:33px;color:rgb(176,2,241)">7</td>
+                    </tr>
+                    <tr>
+                        <td class="td" style="font-size:18px;color:rgb(243,75,19)">17</td>
+                        <td class="td" style="font-size:29px;color:rgb(9,57,226)">25</td>
+                        <td class="td" style="font-size:14px;color:rgb(193,208,111)">10</td>
+                        <td class="td" style="font-size:16px;color:rgb(72,50,114)">6</td>
+                        <td class="td" style="font-size:18px;color:rgb(141,37,208)">24</td>
+                    </tr>
+                    <tr>
+                        <td class="td" style="font-size:37px;color:rgb(200,219,220)">14</td>
+                        <td class="td" style="font-size:28px;color:rgb(187,23,170)">13</td>
+                        <td class="td" style="font-size:21px;color:rgb(110,166,201)">3</td>
+                        <td class="td" style="font-size:38px;color:rgb(31,194,178)">2</td>
+                        <td class="td" style="font-size:17px;color:rgb(198,71,137)">1</td>
+                    </tr>
+                    <tr>
+                        <td class="td" style="font-size:14px;color:rgb(21,233,1)">4</td>
+                        <td class="td" style="font-size:26px;color:rgb(214,232,105)">23</td>
+                        <td class="td" style="font-size:27px;color:rgb(179,107,240)">16</td>
+                        <td class="td" style="font-size:15px;color:rgb(102,156,19)">22</td>
+                        <td class="td" style="font-size:30px;color:rgb(21,180,91)">15</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="button" class="btn-dark" id="restart" value="Все по новой" style="display: block;">
+        </div>
+    </section>
+
+
+    <script>
+        let tableEl = document.getElementById('game_table');
+        let timerEl = document.getElementById('timer');
+        let startEl = document.getElementById('start');
+        let restartEl = document.getElementById('restart');
+        let paused = false;
+        let now = 0;
+        let timer;
+        let rows = 5;
+        let columns = 5;
+        let time = 75;
+        let restTime = time;
+        startEl.addEventListener('click', gameStart);
+        restartEl.addEventListener('click', gameRestart);
+        tableEl.addEventListener('click', init);
+
+        function gameStart() {
+            startEl.style.display = 'none';
+            restartEl.style.display = 'block';
+            create();
+            timerEl.innerHTML = 'Времени осталось: ' + restTime;
+            timer = setInterval(timeStep, 1000);
+        }
+
+        function gameRestart() {
+            restTime = time;
+            now = 0;
+            clearInterval(timer);
+            gameStart();
+        }
+
+        function timeStep() {
+            restTime--;
+            if (restTime > 0) {
+                timerEl.innerHTML = 'Времени осталось: ' + restTime;
+            } else {
+                clearInterval(timer);
+                timerEl.innerHTML = 'Вы проиграли';
+                paused = true;
+            }
+        }
+
+        function init(event) {
+            let targ = event.target //элемент, на котором произошло событие
+            let check = targ.classList.contains('td') &&
+                !targ.classList.contains('select') && !paused;
+            if (check) {
+                let val = +targ.innerHTML;
+                console.log(val, now)
+                if (val === now + 1) {
+                    now += 1;
+                    targ.classList.add('select');
+                    if (val === rows * columns) {
+                        timerEl.innerHTML = 'Вы выиграли';
+                        clearInterval(timer);
+                    }
+                }
+            }
+        }
+
+        function create() {
+            startEl.style.display = 'none';
+            let numbers = getNumbers();
+            let html = '';
+            for (let i = 0; i < rows; i++) {
+                html += '<tr>';
+                for (let j = 0; j < columns; j++) {
+                    html += '<td class="td" style="'
+                        + getRandomStyle() + '">'
+                        + getRandomNumber();
+                    +'</td>'
+                }
+                html += '</tr>';
+            }
+            tableEl.innerHTML = html;
+
+            function getRandomNumber() {
+                let n = randomInterval(0, numbers.length - 1);
+                let res = numbers[n]
+                numbers.splice(n, 1);
+                return res;
+            }
+        }
+
+        function getRandomStyle() {
+            return 'font-size:' + randomInterval(14, 40) + 'px;'
+                + 'color:' + getRandomColor();
+        }
+
+        function getNumbers() {
+            let numbers = [];
+            for (let i = 0; i < rows * columns; i++) {
+                numbers[i] = i + 1;
+            }
+            return numbers;
+        }
+
+        function randomInterval(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        function getRandomColor() {
+            return 'rgb(' + randomInterval(0, 255) + ',' +
+                randomInterval(0, 255) + ',' + randomInterval(0, 255) + ')';
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

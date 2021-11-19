@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лаб 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+</head>
+
+
+
+<body>
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 5
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+	<ul id="test">
+		<li class="question">
+			Столица Беларуси?
+			<ul>
+				<li><label><input type="radio" name="question1" data-true="">Минск.</label></li>
+				<li><label><input type="radio" name="question1">Кобрин.</label></li>
+				<li><label><input type="radio" name="question1">Брест</label></li>
+			</ul>
+		</li>
+		<li class="question">
+			самая большая по площади страна в мире?
+			<ul>
+				<li><label><input type="radio" name="question2">Китай</label></li>
+				<li><label><input type="radio" name="question2">Канада</label></li>
+				<li><label><input type="radio" name="question2" data-true="">Россия</label></li>
+			</ul>
+		</li>
+		<li class="question">
+			Сколько океанов на планете Земля?
+			<ul>
+				<li><label><input type="radio" name="question3">4</label></li>
+				<li><label><input type="radio" name="question3">3</label></li>
+				<li><label><input type="radio" name="question3" data-true="">5</label></li>
+			</ul>
+		</li>
+	</ul>
+	<input type="button" id="check" value="Проверить">	
+
+    </section>
+
+    <footer class="bg-danger fixed-bottom row-fluid">
+        <h3 class=".text-dark">Архутик Артем</h3>
+        <h4 class=".text-dark">КФ-4</h4>
+        <p class=".text-dark">Вариант 1</p>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        var checkEl = document.getElementById('check');
+        var questionsEl = document.getElementsByClassName('question');
+        var result = [];
+        checkEl.addEventListener('click', checkAnswers);
+        function checkAnswers() {
+            for (var i = 0; i < questionsEl.length; i++) {
+                var answers = questionsEl[i].querySelectorAll('input[type=radio]');
+                result.push(checkOneAnswer(answers));
+            }
+            printResult();
+            result = [];
+        }
+        function checkOneAnswer(answers) {
+            var result = null;
+            var noAnswer = true;
+            for (var i = 0; i < answers.length; i++) {
+                var isTrue = (answers[i].getAttribute('data-true') !== null);
+                if (answers[i].checked) {
+                    noAnswer = false;
+                    if (isTrue) {
+                        result = true;
+                    } else {
+                        result = false;
+                    }
+                } else {
+                    if (isTrue) {
+                        result = false;
+                    }
+                }
+            }
+            if (noAnswer) {
+                result = null;
+            }
+            return result;
+        }
+        function printResult() {
+            var trueAnswers = 0;
+            var falseAnswers = 0;
+            var noAnswers = 0;
+            for (var i = 0; i < result.length; i++) {
+                if (result[i] === true) {
+                    trueAnswers++;
+                } else if (result[i] === false) {
+                    falseAnswers++;
+                } else if (result[i] === null) {
+                    noAnswers++;
+                }
+            }
+            var all = trueAnswers + falseAnswers + noAnswers;
+            var percent = Math.round((trueAnswers / all) * 100);
+            var msg = 'Правильных ответов: ' + trueAnswers + ' (' + percent + '%)\n'
+                + 'Неправильных ответов: ' + falseAnswers + '\n'
+                + 'Без ответов: ' + noAnswers + '\n';
+            alert(msg);
+        }
+    </script>
+
+</body>
+
+</html>

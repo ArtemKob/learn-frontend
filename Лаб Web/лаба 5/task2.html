@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лаб 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <style>td{
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	cursor: pointer;
+	text-align: center;
+	font-family: cursive;
+}</style>
+</head>
+
+
+
+<body>
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 5
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+    <table id="myTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </section>
+    <footer class="bg-danger fixed-bottom row-fluid">
+        <h3 class=".text-dark">Архутик Артем</h3>
+        <h4 class=".text-dark">КФ-4</h4>
+        <p class=".text-dark">Вариант 1</p>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+       var pos = [
+            [[0, 0], [0, 1], [0, 2]], //1 строка
+            [[1, 0], [1, 1], [1, 2]], //2 строка
+            [[2, 0], [2, 1], [2, 2]], //3 строка
+            [[0, 0], [1, 0], [2, 0]], //1 столбец
+            [[0, 1], [1, 1], [2, 1]], //2 столбец
+            [[0, 2], [1, 2], [2, 2]], //3 столбец
+            [[0, 0], [1, 1], [2, 2]], //лево-верх - право-низ
+            [[2, 0], [1, 1], [0, 2]], //лево-низ - право-верх
+        ];
+        function proverka() {
+            var table = document.getElementById("myTable");
+
+            var flag;
+            for (var i = 0; i < pos.length; i++) {
+                var win = true;
+                for (var k = 0; k < pos[i].length; k++) {
+                    if (table.rows[pos[i][k][0]].cells[pos[i][k][1]].innerHTML !== 'X')
+                        win = false;
+                }
+                if (win) {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (flag) {
+                alert("победа");
+            }
+        }
+
+        var tds = document.getElementsByTagName('td');
+        for (var i = 0; i < tds.length; i++) {
+            tds[i].addEventListener('click', function () {
+                if (this.innerHTML !== 'X') {
+                    this.innerHTML = 'X';
+                } else {
+                    this.innerHTML = '';
+                }
+                proverka();
+            })
+        }
+    </script>
+
+
+</body>
+
+</html>

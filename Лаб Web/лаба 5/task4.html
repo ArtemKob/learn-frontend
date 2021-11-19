@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лаб 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+</head>
+
+
+
+<body>
+    <header class="bg-danger mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-warning text-center">Веб программирование</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class=".text-danger text-center">Лабораторная работа 5
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-5">
+    <div id="checklist">
+        <input type="text" id="addItem" autofocus="" placeholder="Введите задачу">
+        <div id="itemParent"></div>
+    </div>
+    </section>
+
+    <footer class="bg-danger fixed-bottom row-fluid">
+        <h3 class=".text-dark">Архутик Артем</h3>
+        <h4 class=".text-dark">КФ-4</h4>
+        <p class=".text-dark">Вариант 1</p>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        <script>
+            var checklistEl = document.getElementById('checklist');
+            var itemParentEl = document.getElementById('itemParent');
+            var addItemEl = document.getElementById('addItem');
+            addItemEl.addEventListener('keyup', addItem);
+            checklistEl.addEventListener('click', initRemoveItems);
+            checklistEl.addEventListener('change', initCompleteItems);
+            checklistEl.addEventListener('dblclick', initEditItems);
+            checklistEl.addEventListener('keyup', initSaveEdit);
+            document.addEventListener('click', initSaveEditBlur);
+            /*
+                При установлении собития на элемент, оно срабатывает и при срабатывани на 
+                дочерних элементах. Заметнее всего это при установке события на document:
+                Если устанавить, например, события клика на document, то оно будет 
+                срабатывать при клике на любом элементе страницы. 
+                В тоже время фукнция, которая передается при назначении события 
+                получает объект event, в котором в свойстве target содержится элемент, 
+                по котором произошол клик на самом деле.
+            */
+            function initRemoveItems(event) {
+                /*
+                    События назначаются на родительский элемент
+                    evet - объект события
+                    event.target - элемент на котором произошло событие на самом деле
+                    по классу можно узнать что это за элемент
+                    и если это тот элемент, который нужно - что-то сделать
+                    благодаря этому событие назначается один раз
+                    а не каждому элементу отдельно
+                    (и не нужно назначать события новым элементам)
+                    это называется "делигирование событий"
+                */
+                var isRemoveEl = event.target.className === 'remove';
+                if (isRemoveEl) {
+                    var item = event.target.closest('.item');
+                    if (item) {
+                        itemParentEl.removeChild(item);
+                    }
+                }
+            }
+            function addItem(event) {
+                var val = addItemEl.value;
+                if (val.trim() && event.keyCode === 13) {
+                    addItemEl.value = '';
+                    itemParentEl.innerHTML = getItemHtml(val) +
+                        itemParentEl.innerHTML;
+                }
+            }
+            function initCompleteItems(event) {
+                var isCheckbox = event.target.className === 'checkbox';
+                if (isCheckbox) {
+                    var item = event.target.closest('.item');
+                    if (item && event.target.checked) {
+                        item.classList.add('complete');
+                    }
+                }
+            }
+            function initEditItems(event) {
+                var isText = event.target.className === 'text';
+                if (isText) {
+                    var item = event.target.closest('.item');
+                    if (item) {
+                        item.classList.add('edit');
+                        var editInput = item.querySelector('input.edit');
+                        editInput.value = event.target.innerHTML;
+                        editInput.focus();
+                    }
+                }
+            }
+            function initSaveEdit(event) {
+                var isText = event.target.className === 'edit';
+                if (isText && event.keyCode === 13) {
+                    var item = event.target.closest('.item');
+                    if (item) {
+                        item.classList.remove('edit');
+                        var newText = event.target.value.trim();
+                        if (newText) {
+                            item.querySelector('.text').innerHTML = newText;
+                        }
+                    }
+                }
+            }
+            function initSaveEditBlur(event) {
+                var isEdit = event.target.className === 'edit';
+                if (isEdit) return;
+                var edits = checklistEl.querySelectorAll('.item.edit input.edit');
+                for (var i = 0; i < edits.length; i++) {
+                    var item = edits[i].closest('.item');
+                    if (item) {
+                        item.classList.remove('edit');
+                        var newText = edits[i].value.trim();
+                        if (newText) {
+                            item.querySelector('.text').innerHTML = newText;
+                        }
+                    }
+                }
+            }
+            function getItemHtml(val) {
+                return '<div class="item">'
+                    + '<input type="checkbox" class="checkbox">'
+                    + '<div class="text">' + val + '</div>'
+                    + '<input type="text" class="edit">'
+                    + '<button class="remove">x</button>'
+                    + '</div>'
+            };
+        </script>
+
+
+</body>
+
+</html>
